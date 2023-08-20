@@ -134,3 +134,32 @@ func isInRange(a int, b int, c int) bool {
 	}
 	return false
 }
+
+func FindInRotatedArray2(arr []int, k int) bool {
+	start, end := 0, len(arr)-1
+	for start <= end {
+		mid := start + (end-start)/2
+		if arr[mid] == k {
+			return true
+		}
+		if arr[start] == arr[end] && arr[mid] == arr[start] {
+			start++
+			end--
+		} else {
+			if arr[mid] > k {
+				if arr[start] <= arr[mid] && isInRange(arr[start], k, arr[mid]) {
+					end = mid - 1
+				} else {
+					start = mid + 1
+				}
+			} else {
+				if arr[mid] <= arr[end] && isInRange(arr[mid], k, arr[end]) {
+					start = mid + 1
+				} else {
+					end = mid - 1
+				}
+			}
+		}
+	}
+	return false
+}
