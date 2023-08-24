@@ -1,5 +1,7 @@
 package binarysearch
 
+import "math"
+
 func FindElement(arr []int, start int, end int, k int) int {
 	if start > end {
 		return -1
@@ -162,4 +164,27 @@ func FindInRotatedArray2(arr []int, k int) bool {
 		}
 	}
 	return false
+}
+
+func FindMinimumInRotatedArray(arr []int) int {
+	start, end := 0, len(arr)-1
+	min := math.MaxInt
+	for start <= end {
+		mid := start + (end-start)/2
+		if min > arr[mid] {
+			min = arr[mid]
+		}
+		if arr[start] <= arr[end] {
+			if min > arr[start] {
+				return arr[start]
+			}
+			return min
+		}
+		if arr[start] <= arr[mid] {
+			start = mid + 1
+		} else {
+			end = mid - 1
+		}
+	}
+	return min
 }
