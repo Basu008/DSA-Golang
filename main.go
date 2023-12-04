@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	arr := []int{1, 1, 3, 5}
-	fmt.Println("Answer", binarysearch.SearchSingleElement(arr))
+	arr := []int{1, 5, 1, 2}
+	fmt.Println("Answer", binarysearch.PeakElement(arr))
 }

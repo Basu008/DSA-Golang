@@ -228,3 +228,25 @@ func SearchSingleElement(arr []int) int {
 	}
 	return -1
 }
+
+func PeakElement(arr []int) int {
+	start, end := 1, len(arr)-2
+	if arr[0] > arr[1] {
+		return 0
+	}
+	if arr[len(arr)-1] > arr[len(arr)-2] {
+		return len(arr) - 1
+	}
+	for start <= end {
+		mid := start + (end-start)/2
+		if arr[mid] > arr[mid-1] && arr[mid] > arr[mid+1] {
+			return mid
+		}
+		if arr[mid] > arr[mid+1] {
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+	return -1
+}
