@@ -1,6 +1,8 @@
 package binarysearch
 
-import "math"
+import (
+	"math"
+)
 
 func FindElement(arr []int, start int, end int, k int) int {
 	if start > end {
@@ -187,4 +189,42 @@ func FindMinimumInRotatedArray(arr []int) int {
 		}
 	}
 	return min
+}
+
+func SearchSingleElement(arr []int) int {
+	start, end := 0, len(arr)-1
+	for start < end {
+		mid := start + (end-start)/2
+		if mid == 0 {
+			if arr[mid] != arr[mid+1] {
+				return arr[mid]
+			} else {
+				return -1
+			}
+		}
+		if mid == len(arr)-1 {
+			if arr[mid] != arr[mid-1] {
+				return arr[mid]
+			} else {
+				return -1
+			}
+		}
+		if arr[mid] != arr[mid-1] && arr[mid] != arr[mid+1] {
+			return arr[mid]
+		}
+		if arr[mid] == arr[mid-1] {
+			if mid%2 == 0 {
+				end = mid - 1
+			} else {
+				start = mid + 1
+			}
+		} else {
+			if mid%2 != 0 {
+				end = mid - 1
+			} else {
+				start = mid + 1
+			}
+		}
+	}
+	return -1
 }

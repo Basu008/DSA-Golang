@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	arr := []int{4, 5, 6, 7, 0, 1, 2, 3}
-	fmt.Println("Minimum element", binarysearch.FindMinimumInRotatedArray(arr))
+	arr := []int{1, 1, 3, 5}
+	fmt.Println("Answer", binarysearch.SearchSingleElement(arr))
 }
