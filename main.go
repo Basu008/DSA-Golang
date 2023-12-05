@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Square root of ", 28, "is", binarysearch.GetSqrtOfNumber(28))
+	fmt.Println("CUBBBBEEE", binarysearch.NthRootOfANumber(27, 3))
 }
