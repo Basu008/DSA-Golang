@@ -6,6 +6,5 @@ import (
 )
 
 func main() {
-	arr := []int{1, 5, 1, 2}
-	fmt.Println("Answer", binarysearch.PeakElement(arr))
+	fmt.Println("Square root of ", 28, "is", binarysearch.GetSqrtOfNumber(28))
 }
