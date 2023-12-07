@@ -1,5 +1,7 @@
 package binarysearch
 
+import "math"
+
 func GetSqrtOfNumber(n int) int {
 	start, end := 1, n
 	ans := -1
@@ -31,6 +33,39 @@ func NthRootOfANumber(m int, n int) int {
 		}
 	}
 	return currentAns
+}
+
+func BananasPerHour(arr []int, hours int) int {
+	max := math.MinInt
+	for _, stack := range arr {
+		if stack >= max {
+			max = stack
+		}
+	}
+	ans := 0
+	start, end := 1, max
+	for start <= end {
+		mid := start + (end-start)/2
+		totalHours := CalculateBanana(mid, arr)
+		if totalHours <= hours {
+			if totalHours == hours {
+				ans = mid
+			}
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+	return ans
+}
+
+func CalculateBanana(banana int, stacks []int) int {
+	totalHours := 0
+	for _, stack := range stacks {
+		hourForThisStack := int(math.Ceil(float64(stack) / float64(banana)))
+		totalHours += hourForThisStack
+	}
+	return totalHours
 }
 
 func Pow(x int, y int, mid int) int {

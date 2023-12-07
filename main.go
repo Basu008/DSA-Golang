@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println("CUBBBBEEE", binarysearch.NthRootOfANumber(27, 3))
+	fmt.Println("Kela", binarysearch.BananasPerHour([]int{7, 15, 6, 3}, 8))
 }
