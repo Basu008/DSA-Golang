@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Kela", binarysearch.BananasPerHour([]int{7, 15, 6, 3}, 8))
+	fmt.Println("Guldasta", binarysearch.CalculateBouquet([]int{7, 7, 7, 7, 13, 11, 12, 7}, 2, 3))
 }

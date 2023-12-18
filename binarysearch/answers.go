@@ -68,6 +68,48 @@ func CalculateBanana(banana int, stacks []int) int {
 	return totalHours
 }
 
+func CalculateBouquet(flowers []int, bCount int, fCount int) int {
+	max, min := math.MinInt, math.MaxInt
+	for _, flowerBloomDay := range flowers {
+		if flowerBloomDay <= min {
+			min = flowerBloomDay
+		}
+		if flowerBloomDay >= max {
+			max = flowerBloomDay
+		}
+	}
+	ans := -1
+	start, end := min, max
+	for start <= end {
+		mid := start + (end-start)/2
+		if canBouquetBeFormed(flowers, mid, bCount, fCount) {
+			ans = mid
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+	return ans
+}
+
+func canBouquetBeFormed(arr []int, day int, bCount int, fCount int) bool {
+	count := 0
+	bouquetFormed := 0
+	for _, dayToBloom := range arr {
+		if dayToBloom <= day {
+			count += 1
+		} else {
+			b := count / fCount
+			bouquetFormed += b
+			count = 0
+		}
+	}
+	b := count / fCount
+	bouquetFormed += b
+	count = 0
+	return bouquetFormed >= bCount
+}
+
 func Pow(x int, y int, mid int) int {
 	ans := 1
 	for i := 1; i <= y; i++ {
