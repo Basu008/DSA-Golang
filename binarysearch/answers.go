@@ -22,7 +22,7 @@ func NthRootOfANumber(m int, n int) int {
 	currentAns := 1
 	for start <= end {
 		mid := start + (end-start)/2
-		ans := Pow(m, n, mid)
+		ans := pow(m, n, mid)
 		if ans == 1 {
 			return mid
 		}
@@ -92,6 +92,39 @@ func CalculateBouquet(flowers []int, bCount int, fCount int) int {
 	return ans
 }
 
+func FindSmallestDivisor(arr []int, limit int) int {
+	max := math.MinInt
+	for _, item := range arr {
+		if item >= max {
+			max = item
+		}
+	}
+	ans := -1
+	start, end := 1, max
+	for start <= end {
+		mid := start + (end-start)/2
+		if checkSum(arr, mid, limit) {
+			ans = mid
+			end = mid - 1
+		} else {
+			start = mid + 1
+		}
+	}
+	return ans
+}
+
+func checkSum(arr []int, divisor int, limit int) bool {
+	sum := 0
+	for _, item := range arr {
+		val := int(math.Ceil(float64(item) / float64(divisor)))
+		sum += val
+		if sum > limit {
+			return false
+		}
+	}
+	return sum <= limit
+}
+
 func canBouquetBeFormed(arr []int, day int, bCount int, fCount int) bool {
 	count := 0
 	bouquetFormed := 0
@@ -110,7 +143,7 @@ func canBouquetBeFormed(arr []int, day int, bCount int, fCount int) bool {
 	return bouquetFormed >= bCount
 }
 
-func Pow(x int, y int, mid int) int {
+func pow(x int, y int, mid int) int {
 	ans := 1
 	for i := 1; i <= y; i++ {
 		ans *= mid

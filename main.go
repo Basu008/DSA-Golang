@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Guldasta", binarysearch.CalculateBouquet([]int{7, 7, 7, 7, 13, 11, 12, 7}, 2, 3))
+	fmt.Println("Minimum", binarysearch.FindSmallestDivisor([]int{8, 4, 2, 3}, 10))
 }
