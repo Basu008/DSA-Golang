@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println("Minimum", binarysearch.FindSmallestDivisor([]int{8, 4, 2, 3}, 10))
+	fmt.Println("Max weight for shipment", binarysearch.ShipmentOfPackages([]int{5, 4, 5, 2, 3, 4, 5, 6}, 5))
 }

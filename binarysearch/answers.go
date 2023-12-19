@@ -113,6 +113,43 @@ func FindSmallestDivisor(arr []int, limit int) int {
 	return ans
 }
 
+func ShipmentOfPackages(arr []int, days int) int {
+	max, sum := math.MinInt, 0
+	for _, v := range arr {
+		sum += v
+		if max <= v {
+			max = v
+		}
+	}
+	ans := -1
+	start, end := max, sum
+	for start <= end {
+		mid := start + (end-start)/2
+		d := daysRequiredForShipment(arr, mid)
+		if d > days {
+			start = mid + 1
+		} else {
+			end = mid - 1
+			ans = mid
+		}
+	}
+	return ans
+}
+
+func daysRequiredForShipment(arr []int, limit int) int {
+	sum := 0
+	count := 1
+	for _, v := range arr {
+		if sum+v > limit {
+			count++
+			sum = v
+		} else {
+			sum += v
+		}
+	}
+	return count
+}
+
 func checkSum(arr []int, divisor int, limit int) bool {
 	sum := 0
 	for _, item := range arr {
