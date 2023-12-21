@@ -1,10 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"main/binarysearch"
+	"main/linkedlist"
 )
 
 func main() {
-	fmt.Println("Max weight for shipment", binarysearch.ShipmentOfPackages([]int{5, 4, 5, 2, 3, 4, 5, 6}, 5))
+	var head *linkedlist.Node
+	for i := 1; i <= 4; i++ {
+		head = linkedlist.InsertNodeAtEnd(i, head)
+	}
+	linkedlist.DisplayDoublyLL(head)
+	// fmt.Println("")
+	head = linkedlist.DeleteLastNode(head)
+	linkedlist.DisplayDoublyLL(head)
 }
