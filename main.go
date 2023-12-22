@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"main/linkedlist"
 )
 
@@ -10,7 +11,7 @@ func main() {
 		head = linkedlist.InsertNodeAtEnd(i, head)
 	}
 	linkedlist.DisplayDoublyLL(head)
-	// fmt.Println("")
-	head = linkedlist.DeleteLastNode(head)
+	fmt.Println("")
+	head = linkedlist.ReverseDLLRecursion(head)
 	linkedlist.DisplayDoublyLL(head)
 }

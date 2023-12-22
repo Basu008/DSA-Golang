@@ -40,3 +40,32 @@ func DisplayDoublyLL(head *Node) {
 	}
 	fmt.Println("nil")
 }
+
+func ReverseDoublyLL(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+	current := head
+	for current.Next != nil {
+		next := current.Next
+		current.Next = current.Prev
+		current.Prev = current.Next
+		current = next
+	}
+	current.Next = current.Prev
+	return current
+}
+
+func ReverseDLLRecursion(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+	if head.Next == nil {
+		head.Next = head.Prev
+		return head
+	}
+	next := head.Next
+	head.Next = head.Prev
+	head.Prev = next
+	return ReverseDLLRecursion(next)
+}
