@@ -7,10 +7,11 @@ import (
 
 func main() {
 	var head *linkedlist.Node
-	for i := 1; i <= 6; i++ {
-		head = linkedlist.InsertNodeAtEnd(i, head)
+	for i := 5; i > 0; i-- {
+		head = linkedlist.InsertNodeAtBeginning(i, head)
 	}
-	linkedlist.DisplayDoublyLL(head)
+	linkedlist.Display(head)
 	fmt.Println("")
-	fmt.Println(linkedlist.MidOfLinkedList(head).Data)
+	head = linkedlist.ReverseLLRecursion(head)
+	linkedlist.Display(head)
 }

@@ -4,13 +4,6 @@ import (
 	"fmt"
 )
 
-func InsertNode(data int, pos int, head *Node) *Node {
-	if pos == 1 {
-		return insertNodeAtBeginning(data, head)
-	}
-	return head
-}
-
 func DeleteNode(pos int, head *Node) *Node {
 	length := Length(head)
 	if pos == length {
@@ -49,7 +42,7 @@ func Display(head *Node) {
 	fmt.Print("nil")
 }
 
-func insertNodeAtBeginning(data int, head *Node) *Node {
+func InsertNodeAtBeginning(data int, head *Node) *Node {
 	newNode := Node{
 		Data: data,
 	}
