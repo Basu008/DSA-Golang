@@ -84,3 +84,24 @@ func StartOfCycle(head *Node) *Node {
 	}
 	return nil
 }
+
+func LengthOfLoop(head *Node) int {
+	if head == nil {
+		return 0
+	}
+	slow, fast := head, head
+	for fast != nil && fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next.Next
+		if slow == fast {
+			length := 1
+			slow = slow.Next
+			for slow != fast {
+				slow = slow.Next
+				length++
+			}
+			return length
+		}
+	}
+	return 0
+}
