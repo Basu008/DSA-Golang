@@ -105,3 +105,23 @@ func LengthOfLoop(head *Node) int {
 	}
 	return 0
 }
+
+func OddEvenList(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+	if head.Next == nil {
+		return head
+	}
+	odd := head
+	even := head.Next
+	evenHead := head.Next
+	for odd.Next != nil && even.Next != nil {
+		odd.Next = odd.Next.Next
+		even.Next = even.Next.Next
+		odd = odd.Next
+		even = even.Next
+	}
+	odd.Next = evenHead
+	return head
+}
