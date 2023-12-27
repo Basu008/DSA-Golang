@@ -116,12 +116,26 @@ func OddEvenList(head *Node) *Node {
 	odd := head
 	even := head.Next
 	evenHead := head.Next
-	for odd.Next != nil && even.Next != nil {
+	for even != nil && even.Next != nil {
 		odd.Next = odd.Next.Next
 		even.Next = even.Next.Next
 		odd = odd.Next
 		even = even.Next
 	}
 	odd.Next = evenHead
+	return head
+}
+
+func RemoveNthNode(head *Node, pos int) *Node {
+	slow := head
+	fast := head
+	for i := 0; i < pos; i++ {
+		fast = fast.Next
+	}
+	for fast.Next != nil {
+		slow = slow.Next
+		fast = fast.Next
+	}
+	slow.Next = slow.Next.Next
 	return head
 }
