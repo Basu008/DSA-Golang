@@ -38,7 +38,8 @@ func DisplayDoublyLL(head *Node) {
 		fmt.Print(temp.Data, "<->")
 		temp = temp.Next
 	}
-	fmt.Println("nil")
+	fmt.Print("nil")
+	fmt.Println("")
 }
 
 func ReverseDoublyLL(head *Node) *Node {
