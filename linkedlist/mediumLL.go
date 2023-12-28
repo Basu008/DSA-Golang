@@ -152,3 +152,32 @@ func RemoveMiddleNode(head *Node) *Node {
 	slower.Next = slow.Next
 	return head
 }
+
+func IncrLL(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+	carry := getCarry(head)
+	if carry > 0 {
+		newNode := NewNode(carry)
+		newNode.Next = head
+		head = newNode
+	}
+	return head
+}
+
+func getCarry(node *Node) int {
+	if node.Next == nil {
+		sum := node.Data + 1
+		carry := sum / 10
+		node.Data = sum % 10
+		return carry
+	}
+	carry := getCarry(node.Next)
+	if carry > 0 {
+		sum := node.Data + carry
+		node.Data = sum % 10
+		carry = sum / 10
+	}
+	return carry
+}

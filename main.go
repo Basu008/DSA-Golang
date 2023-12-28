@@ -7,11 +7,12 @@ import (
 
 func main() {
 	var head *linkedlist.Node
-	for i := 5; i > 0; i-- {
-		head = linkedlist.InsertNodeAtBeginning(i, head)
+	arr := []int{9, 9, 9, 9, 9}
+	for _, e := range arr {
+		head = linkedlist.InsertNodeAtBeginning(e, head)
 	}
 	linkedlist.Display(head)
 	fmt.Println("")
-	head = linkedlist.RemoveMiddleNode(head)
+	head = linkedlist.IncrLL(head)
 	linkedlist.Display(head)
 }
