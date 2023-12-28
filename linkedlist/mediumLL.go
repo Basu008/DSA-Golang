@@ -139,3 +139,16 @@ func RemoveNthNode(head *Node, pos int) *Node {
 	slow.Next = slow.Next.Next
 	return head
 }
+
+func RemoveMiddleNode(head *Node) *Node {
+	slow := head
+	fast := head
+	var slower *Node
+	for fast != nil && fast.Next != nil {
+		slower = slow
+		slow = slow.Next
+		fast = fast.Next.Next
+	}
+	slower.Next = slow.Next
+	return head
+}

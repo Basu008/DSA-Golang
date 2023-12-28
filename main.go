@@ -12,6 +12,6 @@ func main() {
 	}
 	linkedlist.Display(head)
 	fmt.Println("")
-	head = linkedlist.RemoveNthNode(head, 1)
+	head = linkedlist.RemoveMiddleNode(head)
 	linkedlist.Display(head)
 }
