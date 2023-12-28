@@ -166,6 +166,38 @@ func IncrLL(head *Node) *Node {
 	return head
 }
 
+func AddTwoLL(head1 *Node, head2 *Node) *Node {
+	h1, h2 := head1, head2
+	h3 := NewNode(-1)
+	temp := h3
+	carry := 0
+	for h1 != nil || h2 != nil {
+		sum := 0
+		if h1 != nil {
+			sum += h1.Data
+		}
+		if h2 != nil {
+			sum += h2.Data
+		}
+		sum += carry
+		carry = sum / 10
+		newNode := NewNode(sum % 10)
+		temp.Next = newNode
+		temp = temp.Next
+		if h1 != nil {
+			h1 = h1.Next
+		}
+		if h2 != nil {
+			h2 = h2.Next
+		}
+	}
+	if carry == 1 {
+		newNode := NewNode(carry)
+		temp.Next = newNode
+	}
+	return h3.Next
+}
+
 func getCarry(node *Node) int {
 	if node.Next == nil {
 		sum := node.Data + 1

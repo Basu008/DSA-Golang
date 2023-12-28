@@ -40,6 +40,7 @@ func Display(head *Node) {
 		temp = temp.Next
 	}
 	fmt.Print("nil")
+	fmt.Println("")
 }
 
 func InsertNodeAtBeginning(data int, head *Node) *Node {
