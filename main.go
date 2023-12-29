@@ -7,13 +7,13 @@ import (
 
 func main() {
 	var head *linkedlist.Node
-	arr := []int{1, 2, 2, 2}
+	arr := []int{1, 0, 2, 1}
 	for _, e := range arr {
-		head = linkedlist.InsertNodeAtEnd(e, head)
+		head = linkedlist.InsertNodeAtBeginning(e, head)
 	}
 	fmt.Println("Initial List")
-	linkedlist.DisplayDoublyLL(head)
-	head = linkedlist.RemoveDuplicates(head)
+	linkedlist.Display(head)
+	head = linkedlist.Sort0s1s2s(head)
 	fmt.Println("Result")
-	linkedlist.DisplayDoublyLL(head)
+	linkedlist.Display(head)
 }

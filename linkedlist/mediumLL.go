@@ -213,3 +213,39 @@ func getCarry(node *Node) int {
 	}
 	return carry
 }
+
+func Sort0s1s2s(head *Node) *Node {
+	if head == nil {
+		return head
+	}
+	if head.Next == nil {
+		return head
+	}
+	zeroHead, oneHead, twoHead := NewNode(-1), NewNode(-1), NewNode(-1)
+	zero, one, two := zeroHead, oneHead, twoHead
+	temp := head
+	for temp != nil {
+		switch temp.Data {
+		case 0:
+			{
+				zero.Next = temp
+				zero = zero.Next
+			}
+		case 1:
+			{
+				one.Next = temp
+				one = one.Next
+			}
+		case 2:
+			{
+				two.Next = temp
+				two = two.Next
+			}
+		}
+		temp = temp.Next
+	}
+	zero.Next = oneHead.Next
+	one.Next = twoHead.Next
+	two.Next = nil
+	return zeroHead.Next
+}
