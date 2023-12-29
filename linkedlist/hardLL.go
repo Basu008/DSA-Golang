@@ -33,3 +33,20 @@ func getKthNode(head *Node, k int) *Node {
 	}
 	return temp
 }
+
+func RotateLL(head *Node, k int) *Node {
+	length := Length(head)
+	traversal := length - (k % length)
+	tail := head
+	for tail.Next != nil {
+		tail = tail.Next
+	}
+	temp := head
+	for i := 1; i < traversal; i++ {
+		temp = temp.Next
+	}
+	tail.Next = head
+	head = temp.Next
+	temp.Next = nil
+	return head
+}
