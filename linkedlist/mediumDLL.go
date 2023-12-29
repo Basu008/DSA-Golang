@@ -18,3 +18,22 @@ func DeleteKeyNodes(head *Node, key int) *Node {
 	}
 	return head
 }
+
+func RemoveDuplicates(head *Node) *Node {
+	temp := head
+	dupe := temp.Next
+	for dupe != nil {
+		if dupe.Data != temp.Data {
+			temp.Next = dupe
+			dupe.Prev = temp
+			temp = dupe
+			dupe = dupe.Next
+		} else {
+			dupe = dupe.Next
+		}
+	}
+	if temp != nil {
+		temp.Next = dupe
+	}
+	return head
+}
