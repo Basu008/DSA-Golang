@@ -1,19 +1,13 @@
 package main
 
 import (
-	"fmt"
-	"main/linkedlist"
+	"main/stack"
 )
 
 func main() {
-	var head *linkedlist.Node
-	arr := []int{4, 3, 2, 1}
-	for _, e := range arr {
-		head = linkedlist.InsertNodeAtBeginning(e, head)
+	st := stack.Stack{}
+	for i := 5; i >= 0; i-- {
+		st.Push(i)
 	}
-	fmt.Println("Initial List")
-	linkedlist.Display(head)
-	head = linkedlist.RotateLL(head, 5)
-	fmt.Println("Result")
-	linkedlist.Display(head)
+	st.Display()
 }
