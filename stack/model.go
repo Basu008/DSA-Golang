@@ -2,15 +2,15 @@ package stack
 
 import "fmt"
 
-type Stack []int
+type Stack []interface{}
 
-func (s *Stack) Push(data int) {
+func (s *Stack) Push(data interface{}) {
 	*s = append(*s, data)
 }
 
-func (s *Stack) Pop() int {
+func (s *Stack) Pop() interface{} {
 	if s.IsEmpty() {
-		return -1
+		return nil
 	}
 	top := (*s)[len(*s)-1]
 	*s = (*s)[:len(*s)-1]
@@ -31,7 +31,7 @@ func (s *Stack) Display() {
 	}
 }
 
-func (s *Stack) Top() int {
+func (s *Stack) Top() interface{} {
 	if s.IsEmpty() {
 		return -1
 	}
