@@ -33,7 +33,7 @@ func (s *Stack) Display() {
 
 func (s *Stack) Top() interface{} {
 	if s.IsEmpty() {
-		return -1
+		return nil
 	}
 	return (*s)[len(*s)-1]
 }

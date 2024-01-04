@@ -11,6 +11,6 @@ func main() {
 	// 	st.Push(i)
 	// }
 	// st.Display()
-	brackets := "()[{}()]"
-	fmt.Print("Ans: ", stack.AreBracketsValid(brackets))
+	arr := []int{4, 5, 2, 10, 8}
+	fmt.Println("NSR", stack.NSR(arr))
 }
