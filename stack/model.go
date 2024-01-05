@@ -38,6 +38,13 @@ func (s *Stack) Top() interface{} {
 	return (*s)[len(*s)-1]
 }
 
+func (s *Stack) IntTop() int {
+	if s.IsEmpty() {
+		return -1
+	}
+	return (*s)[len(*s)-1].(int)
+}
+
 func (s *Stack) Size() int {
 	return len(*s)
 }

@@ -1,77 +1,37 @@
 package stack
 
-func NGR(arr []int) []int {
+func StockSpan(stocks []int) []int {
+	res := make([]int, len(stocks))
 	stack := Stack{}
-	res := make([]int, len(arr))
-	for i := len(arr) - 1; i >= 0; i-- {
-		for !stack.IsEmpty() && stack.Top().(int) <= arr[i] {
+	for i := 0; i < len(stocks); i++ {
+		curr := stocks[i]
+		top := stack.IntTop()
+		for top != -1 && stocks[top] <= curr {
 			stack.Pop()
+			top = stack.IntTop()
 		}
-		var top int
-		if stack.Top() == nil {
-			top = -1
+		if top == -1 {
+			res[i] = i + 1
 		} else {
-			top = stack.Top().(int)
+			res[i] = i - top
 		}
-		res[i] = top
-		stack.Push(arr[i])
+		stack.Push(i)
 	}
 	return res
 }
 
-func NGL(arr []int) []int {
-	stack := Stack{}
-	res := make([]int, len(arr))
-	for i := 0; i < len(arr); i++ {
-		for !stack.IsEmpty() && stack.Top().(int) <= arr[i] {
-			stack.Pop()
+func MaxAreaHistogram(histogram []int) int {
+	var maxArea int
+	leftResult := getNSL(histogram)
+	rightResult := getNSR(histogram)
+	for i, h := range histogram {
+		left := leftResult[i]
+		right := rightResult[i]
+		w := (left + right - 1)
+		area := h * w
+		if maxArea <= area {
+			maxArea = area
 		}
-		var top int
-		if stack.Top() == nil {
-			top = -1
-		} else {
-			top = stack.Top().(int)
-		}
-		res[i] = top
-		stack.Push(arr[i])
 	}
-	return res
-}
-
-func NSL(arr []int) []int {
-	stack := Stack{}
-	res := make([]int, len(arr))
-	for i := 0; i < len(arr); i++ {
-		for !stack.IsEmpty() && stack.Top().(int) >= arr[i] {
-			stack.Pop()
-		}
-		var top int
-		if stack.Top() == nil {
-			top = -1
-		} else {
-			top = stack.Top().(int)
-		}
-		res[i] = top
-		stack.Push(arr[i])
-	}
-	return res
-}
-
-func NSR(arr []int) []int {
-	stack := Stack{}
-	res := make([]int, len(arr))
-	for i := len(arr) - 1; i >= 0; i-- {
-		for !stack.IsEmpty() && stack.Top().(int) >= arr[i] {
-			stack.Pop()
-		}
-		var top int
-		if stack.Top() == nil {
-			top = -1
-		} else {
-			top = stack.Top().(int)
-		}
-		res[i] = top
-		stack.Push(arr[i])
-	}
-	return res
+	return maxArea
 }

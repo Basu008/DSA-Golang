@@ -11,6 +11,6 @@ func main() {
 	// 	st.Push(i)
 	// }
 	// st.Display()
-	arr := []int{4, 5, 2, 10, 8}
-	fmt.Println("NSR", stack.NSR(arr))
+	arr := []int{7, 2, 8, 9, 1, 3, 6, 5}
+	fmt.Println("MAH : ", stack.MaxAreaHistogram(arr))
 }
