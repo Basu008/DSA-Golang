@@ -11,6 +11,11 @@ func main() {
 	// 	st.Push(i)
 	// }
 	// st.Display()
-	arr := []int{7, 2, 8, 9, 1, 3, 6, 5}
-	fmt.Println("MAH : ", stack.MaxAreaHistogram(arr))
+	// arr := []int{0, 0, 0, 0, 0}
+	binaryMatrix := [][]int{
+		{1, 0, 1, 0, 0},
+		{1, 0, 1, 1, 1},
+		{1, 1, 1, 1, 1},
+		{1, 0, 0, 1, 0}}
+	fmt.Println("MAH in binary : ", stack.MaxAreaInBinaryMatrix(binaryMatrix))
 }

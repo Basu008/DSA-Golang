@@ -1,5 +1,7 @@
 package stack
 
+import "main/arrays"
+
 func StockSpan(stocks []int) []int {
 	res := make([]int, len(stocks))
 	stack := Stack{}
@@ -34,4 +36,28 @@ func MaxAreaHistogram(histogram []int) int {
 		}
 	}
 	return maxArea
+}
+
+func MaxAreaInBinaryMatrix(binaryMatrix [][]int) int {
+	histograms := make([][]int, len(binaryMatrix))
+	for i := range binaryMatrix {
+		currentHistogram := []int{}
+		for j := range binaryMatrix[i] {
+			if i == 0 {
+				currentHistogram = append(currentHistogram, binaryMatrix[i][j])
+			} else {
+				if binaryMatrix[i][j] == 0 {
+					currentHistogram = append(currentHistogram, 0)
+				} else {
+					currentHistogram = append(currentHistogram, histograms[i-1][j]+1)
+				}
+			}
+		}
+		histograms[i] = currentHistogram
+	}
+	maxAreas := []int{}
+	for _, histogram := range histograms {
+		maxAreas = append(maxAreas, MaxAreaHistogram(histogram))
+	}
+	return arrays.LargestElement(maxAreas)
 }
