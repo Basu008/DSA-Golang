@@ -281,3 +281,35 @@ func LongstSubArrayWithGivenSum2(arr []int, k int) int {
 	}
 	return maxLen
 }
+
+func LargestElementLeft(arr []int) []int {
+	res := make([]int, len(arr))
+	for i, e := range arr {
+		if i == 0 {
+			res[i] = e
+			continue
+		}
+		if res[i-1] <= e {
+			res[i] = e
+		} else {
+			res[i] = res[i-1]
+		}
+	}
+	return res
+}
+
+func LargestElementRight(arr []int) []int {
+	res := make([]int, len(arr))
+	for i := len(arr) - 1; i >= 0; i-- {
+		if i == len(arr)-1 {
+			res[i] = arr[i]
+			continue
+		}
+		if res[i+1] <= arr[i] {
+			res[i] = arr[i]
+		} else {
+			res[i] = res[i+1]
+		}
+	}
+	return res
+}

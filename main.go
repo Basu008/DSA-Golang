@@ -11,11 +11,6 @@ func main() {
 	// 	st.Push(i)
 	// }
 	// st.Display()
-	// arr := []int{0, 0, 0, 0, 0}
-	binaryMatrix := [][]int{
-		{1, 0, 1, 0, 0},
-		{1, 0, 1, 1, 1},
-		{1, 1, 1, 1, 1},
-		{1, 0, 0, 1, 0}}
-	fmt.Println("MAH in binary : ", stack.MaxAreaInBinaryMatrix(binaryMatrix))
+	arr := []int{3, 0, 2, 0, 4}
+	fmt.Println("Rainwater trapping : ", stack.RainWaterTrapping(arr))
 }

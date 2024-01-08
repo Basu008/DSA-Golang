@@ -1,6 +1,9 @@
 package stack
 
-import "main/arrays"
+import (
+	"main/arrays"
+	"main/basicmaths"
+)
 
 func StockSpan(stocks []int) []int {
 	res := make([]int, len(stocks))
@@ -60,4 +63,15 @@ func MaxAreaInBinaryMatrix(binaryMatrix [][]int) int {
 		maxAreas = append(maxAreas, MaxAreaHistogram(histogram))
 	}
 	return arrays.LargestElement(maxAreas)
+}
+
+func RainWaterTrapping(buildings []int) int {
+	leftMaxArray := arrays.LargestElementLeft(buildings)
+	rightMaxArray := arrays.LargestElementRight(buildings)
+	var totalArea int
+	for i, building := range buildings {
+		area := basicmaths.Min(leftMaxArray[i], rightMaxArray[i]) - building
+		totalArea += area
+	}
+	return totalArea
 }
