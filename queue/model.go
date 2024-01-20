@@ -2,15 +2,15 @@ package queue
 
 import "fmt"
 
-type Queue []int
+type Queue []interface{}
 
-func (q *Queue) Push(data int) {
+func (q *Queue) Push(data interface{}) {
 	*q = append(*q, data)
 }
 
-func (q *Queue) Pop() int {
+func (q *Queue) Pop() interface{} {
 	if q.IsEmpty() {
-		return -1
+		return nil
 	}
 	top := (*q)[0]
 	*q = (*q)[1:]
@@ -33,4 +33,18 @@ func (q *Queue) Display() {
 			fmt.Print(",")
 		}
 	}
+}
+
+func (q *Queue) Top() interface{} {
+	if q.IsEmpty() {
+		return nil
+	}
+	return (*q)[0]
+}
+
+func (q *Queue) IntTop() int {
+	if q.IsEmpty() {
+		return -1
+	}
+	return (*q)[0].(int)
 }

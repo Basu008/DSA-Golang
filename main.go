@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"main/stack"
+	"main/binarytree"
 )
 
 func main() {
@@ -11,6 +11,14 @@ func main() {
 	// 	st.Push(i)
 	// }
 	// st.Display()
-	arr := []int{3, 0, 2, 0, 4}
-	fmt.Println("Rainwater trapping : ", stack.RainWaterTrapping(arr))
+	arr := []int{1, 2, 3, 4, 5, 6, 7}
+	var root *binarytree.Node
+	for _, e := range arr {
+		root = binarytree.Insert(root, e)
+	}
+	binarytree.Inorder(root)
+	fmt.Println("")
+	binarytree.PreOrder(root)
+	fmt.Println("")
+	binarytree.PostOrder(root)
 }
