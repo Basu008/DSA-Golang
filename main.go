@@ -21,4 +21,5 @@ func main() {
 	binarytree.PreOrder(root)
 	fmt.Println("")
 	binarytree.PostOrder(root)
+	binarytree.LevelOrder(root)
 }

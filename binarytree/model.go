@@ -73,3 +73,19 @@ func PostOrder(root *Node) *Node {
 	fmt.Printf("%d ", root.Data)
 	return nil
 }
+
+func LevelOrder(root *Node) {
+	q := queue.Queue{}
+	q.Push(root)
+	fmt.Println("")
+	for !q.IsEmpty() {
+		top := q.Pop().(*Node)
+		fmt.Printf("%d ", top.Data)
+		if top.Left != nil {
+			q.Push(top.Left)
+		}
+		if top.Right != nil {
+			q.Push(top.Right)
+		}
+	}
+}
