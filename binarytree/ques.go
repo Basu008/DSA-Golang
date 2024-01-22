@@ -34,15 +34,15 @@ func IsTreeBalanced(root *Node) bool {
 	return true
 }
 
-func DiameterOfTree(root *Node, max []int) int {
+func DiameterOfTree(root *Node, max *int) int {
 	if root == nil {
 		return 0
 	}
 	leftMax := DiameterOfTree(root.Left, max)
 	rightMax := DiameterOfTree(root.Right, max)
 	dia := leftMax + rightMax
-	if max[0] <= dia {
-		max[0] = dia
+	if *max <= dia {
+		*max = dia
 	}
 	return 1 + int(math.Max(float64(leftMax), float64(rightMax)))
 }

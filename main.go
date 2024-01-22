@@ -13,7 +13,7 @@ func main() {
 	}
 	binarytree.LevelOrder(root)
 	fmt.Println("Depth of tree", binarytree.DepthOfTree(root))
-	max := []int{0}
-	binarytree.DiameterOfTree(root, max)
+	fmt.Println("")
+	max := 0
 	fmt.Println("Diameter", max)
 }
