@@ -46,3 +46,24 @@ func DiameterOfTree(root *Node, max *int) int {
 	}
 	return 1 + int(math.Max(float64(leftMax), float64(rightMax)))
 }
+
+func MaxPathSum(root *Node, maxSum *int) int {
+	if root == nil {
+		return 0
+	}
+	leftSum := MaxPathSum(root.Left, maxSum)
+	rightSum := MaxPathSum(root.Right, maxSum)
+	sum := leftSum + rightSum + root.Data
+	if *maxSum <= sum {
+		*maxSum = sum
+	}
+	return root.Data + int(math.Max(float64(leftSum), float64(rightSum)))
+}
+
+func AreTreesEqual(root1 *Node, root2 *Node) bool {
+	if root1 == nil || root2 == nil {
+		return root1 == root2
+	}
+	return root1.Data == root2.Data && AreTreesEqual(root1.Left, root2.Left) &&
+		AreTreesEqual(root1.Right, root2.Right)
+}
