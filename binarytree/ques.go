@@ -1,6 +1,11 @@
 package binarytree
 
-import "math"
+import (
+	"fmt"
+	"main/queue"
+	"main/stack"
+	"math"
+)
 
 func DepthOfTree(root *Node) int {
 	if root == nil {
@@ -66,4 +71,35 @@ func AreTreesEqual(root1 *Node, root2 *Node) bool {
 	}
 	return root1.Data == root2.Data && AreTreesEqual(root1.Left, root2.Left) &&
 		AreTreesEqual(root1.Right, root2.Right)
+}
+
+func ZigZagTraversal(root *Node) {
+	stack := stack.Stack{}
+	queue := queue.Queue{}
+	direction := "rtl"
+	stack.Push(root)
+	for !stack.IsEmpty() {
+		for direction == "rtl" && !stack.IsEmpty() {
+			topNode := stack.Pop().(*Node)
+			if topNode.Right != nil {
+				queue.Push(topNode.Right)
+			}
+			if topNode.Left != nil {
+				queue.Push(topNode.Left)
+			}
+			fmt.Printf("%d ", topNode.Data)
+		}
+		direction = "ltr"
+		for direction == "ltr" && !queue.IsEmpty() {
+			topNode := queue.Pop().(*Node)
+			if topNode.Right != nil {
+				stack.Push(topNode.Right)
+			}
+			if topNode.Left != nil {
+				stack.Push(topNode.Left)
+			}
+			fmt.Printf("%d ", topNode.Data)
+		}
+		direction = "rtl"
+	}
 }
