@@ -21,18 +21,22 @@ func (q *Queue) IsEmpty() bool {
 	return len(*q) == 0
 }
 
-func (q *Queue) Display() {
-	for i := len(*q) - 1; i >= 0; i-- {
-		if i == len(*q)-1 {
-			fmt.Print("[")
+func (q *Queue) Display(reverse bool) {
+	if reverse {
+		for i := 0; i <= len(*q)-1; i++ {
+			fmt.Print((*q)[i])
+			fmt.Print(" ")
 		}
-		fmt.Print((*q)[i])
-		if i == 0 {
-			fmt.Print("]")
-		} else {
-			fmt.Print(",")
+	} else {
+		for i := len(*q) - 1; i >= 0; i-- {
+			fmt.Print((*q)[i])
+			fmt.Print(" ")
 		}
 	}
+}
+
+func (q *Queue) Length() int {
+	return len(*q)
 }
 
 func (q *Queue) Top() interface{} {
@@ -47,4 +51,13 @@ func (q *Queue) IntTop() int {
 		return -1
 	}
 	return (*q)[0].(int)
+}
+
+func (q *Queue) Contains(e interface{}) bool {
+	for _, v := range *q {
+		if e == v {
+			return true
+		}
+	}
+	return false
 }

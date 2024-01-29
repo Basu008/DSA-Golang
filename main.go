@@ -1,14 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"main/binarytree"
 )
 
 func main() {
-	arr := []int{1, 2, 3, 4, 5, 6}
+	arr := []int{3, 5, 1, 6, 2, 0, 8, 7, 4}
 	var root *binarytree.Node
 	for _, e := range arr {
 		root = binarytree.Insert(root, e)
 	}
-	binarytree.ZigZagTraversal(root)
+	res := binarytree.NodesAtKDistance(root, 5, 2)
+	fmt.Println(res)
 }
