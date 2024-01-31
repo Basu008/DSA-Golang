@@ -371,3 +371,137 @@ func NodesAtKDistance(root *Node, key int, distance int) []int {
 	}
 	return res
 }
+
+func TimeToBurnTree(root *Node, key int) int {
+	var q queue.Queue
+	var keyNode *Node
+	var time int
+	q.Push(root)
+	childToParent := make(map[*Node]*Node)
+	visitedNodes := make(map[*Node]int)
+	for !q.IsEmpty() {
+		topNode := q.Pop().(*Node)
+		if topNode.Data == key {
+			keyNode = topNode
+		}
+		if topNode.Left != nil {
+			childToParent[topNode.Left] = topNode
+			q.Push(topNode.Left)
+		}
+		if topNode.Right != nil {
+			childToParent[topNode.Right] = topNode
+			q.Push(topNode.Right)
+		}
+	}
+	q.Push(keyNode)
+	visitedNodes[keyNode] = 1
+	for !q.IsEmpty() {
+		size := q.Length()
+		burned := false
+		for i := 0; i < size; i++ {
+			topNode := q.Pop().(*Node)
+			if parentNode, ok := childToParent[topNode]; ok {
+				if _, isVisited := visitedNodes[parentNode]; !isVisited {
+					q.Push(parentNode)
+					visitedNodes[parentNode] = 1
+					burned = true
+				}
+			}
+			if topNode.Left != nil {
+				if _, isVisited := visitedNodes[topNode.Left]; !isVisited {
+					q.Push(topNode.Left)
+					visitedNodes[topNode.Left] = 1
+					burned = true
+				}
+			}
+			if topNode.Right != nil {
+				if _, isVisited := visitedNodes[topNode.Right]; !isVisited {
+					q.Push(topNode.Right)
+					visitedNodes[topNode.Right] = 1
+					burned = true
+				}
+			}
+		}
+		if burned {
+			time++
+		}
+	}
+	return time
+}
+
+func CountNodeForCompleteTree(root *Node) int {
+	if root == nil {
+		return 0
+	}
+	if root.Left == nil && root.Right == nil {
+		return 1
+	}
+	leftHeight := DepthOfTree(root.Left)
+	rightHeight := DepthOfTree(root.Right)
+	if leftHeight == rightHeight {
+		return int(math.Pow(2, float64(leftHeight)) + 1)
+	}
+	leftNodeCount := CountNodeForCompleteTree(root.Left)
+	rightNodeCount := CountNodeForCompleteTree(root.Right)
+	return leftNodeCount + rightNodeCount + 1
+}
+
+func TreeFromInorderAndPreorder(preorder, inorder []int) *Node {
+	pSize, iSize := len(preorder), len(inorder)
+	if pSize == 0 || iSize == 0 {
+		return nil
+	}
+	if iSize == 1 {
+		return createNewNode(inorder[0])
+	}
+	node := createNewNode(preorder[0])
+	leftInorder, rightInorder := []int{}, []int{}
+	isLeft := true
+	for _, iNode := range inorder {
+		if iNode == preorder[0] {
+			isLeft = false
+			continue
+		}
+		if isLeft {
+			leftInorder = append(leftInorder, iNode)
+		} else {
+			rightInorder = append(rightInorder, iNode)
+		}
+	}
+	//{1, 2, 3, 4, 5, 6}
+	node.Left = TreeFromInorderAndPreorder(preorder[1:1+len(leftInorder)], leftInorder)
+	if len(preorder) > 1 {
+		node.Right = TreeFromInorderAndPreorder(preorder[1+len(leftInorder):], rightInorder)
+	}
+	return node
+}
+
+func TreeFromInorderAndPostorder(postorder, inorder []int) *Node {
+	pSize, iSize := len(postorder), len(inorder)
+	if pSize == 0 || iSize == 0 {
+		return nil
+	}
+	if iSize == 1 {
+		return createNewNode(inorder[0])
+	}
+	node := createNewNode(postorder[pSize-1])
+	leftInorder, rightInorder := []int{}, []int{}
+	isLeft := true
+	for _, iNode := range inorder {
+		if iNode == postorder[pSize-1] {
+			isLeft = false
+			continue
+		}
+		if isLeft {
+			leftInorder = append(leftInorder, iNode)
+		} else {
+			rightInorder = append(rightInorder, iNode)
+		}
+	}
+	//{1, 2, 3, 4, 5, 6}
+	node.Left = TreeFromInorderAndPostorder(postorder[:len(leftInorder)], leftInorder)
+	if len(postorder) > 1 {
+		node.Right = TreeFromInorderAndPostorder(postorder[len(leftInorder):pSize-1], rightInorder)
+	}
+	return node
+}
