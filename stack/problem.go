@@ -1,8 +1,8 @@
 package stack
 
 import (
-	"main/arrays"
-	"main/basicmaths"
+	"github.com/Basu008/DSA-Golang/arrays"
+	"github.com/Basu008/DSA-Golang/basicmaths"
 )
 
 func StockSpan(stocks []int) []int {

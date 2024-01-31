@@ -2,9 +2,12 @@ package binarytree
 
 import (
 	"fmt"
-	"main/queue"
-	"main/stack"
+
+	"github.com/Basu008/DSA-Golang/queue"
+
 	"math"
+
+	"github.com/Basu008/DSA-Golang/stack"
 )
 
 type DataWithVertical struct {

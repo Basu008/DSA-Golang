@@ -1,8 +1,6 @@
 package main
 
-import (
-	"main/binarytree"
-)
+import "github.com/Basu008/DSA-Golang/binarytree"
 
 func main() {
 	// arr := []int{1, 2, 3, 4, 5, 6, 7, 8}

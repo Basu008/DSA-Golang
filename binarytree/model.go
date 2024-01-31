@@ -2,7 +2,8 @@ package binarytree
 
 import (
 	"fmt"
-	"main/queue"
+
+	"github.com/Basu008/DSA-Golang/queue"
 )
 
 type Node struct {
