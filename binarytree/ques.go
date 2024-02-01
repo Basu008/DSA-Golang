@@ -2,6 +2,8 @@ package binarytree
 
 import (
 	"fmt"
+	"strconv"
+	"strings"
 
 	"github.com/Basu008/DSA-Golang/queue"
 
@@ -507,4 +509,57 @@ func TreeFromInorderAndPostorder(postorder, inorder []int) *Node {
 		node.Right = TreeFromInorderAndPostorder(postorder[len(leftInorder):pSize-1], rightInorder)
 	}
 	return node
+}
+
+func SerializeTree(root *Node) string {
+	res := ""
+	var q queue.Queue
+	q.Push(root)
+	for !q.IsEmpty() {
+		topNode := q.Pop().(*Node)
+		if topNode.Data == -1 {
+			res = res + "#,"
+			continue
+		} else {
+			res = res + fmt.Sprint(topNode.Data) + ","
+		}
+		if topNode.Left != nil {
+			q.Push(topNode.Left)
+		} else {
+			q.Push(createNewNode(-1))
+		}
+		if topNode.Right != nil {
+			q.Push(topNode.Right)
+		} else {
+			q.Push(createNewNode(-1))
+		}
+	}
+	return res
+}
+
+func DeSerializeTree(tree string) *Node {
+	var q queue.Queue
+	nodes := strings.Split(tree, ",")
+	i, _ := strconv.Atoi(nodes[0])
+	root := createNewNode(i)
+	q.Push(root)
+	index := 1
+	for !q.IsEmpty() {
+		top := q.Pop().(*Node)
+		currNodeAsString := nodes[index]
+		index++
+		data, _ := strconv.Atoi(currNodeAsString)
+		if currNodeAsString != "#" {
+			top.Left = createNewNode(data)
+			q.Push(top.Left)
+		}
+		currNodeAsString = nodes[index]
+		index++
+		data, _ = strconv.Atoi(currNodeAsString)
+		if currNodeAsString != "#" {
+			top.Right = createNewNode(data)
+			q.Push(top.Right)
+		}
+	}
+	return root
 }

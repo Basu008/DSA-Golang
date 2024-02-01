@@ -2,6 +2,7 @@ package binarytree
 
 import (
 	"fmt"
+	"math"
 
 	"github.com/Basu008/DSA-Golang/queue"
 )
@@ -45,6 +46,10 @@ func Insert(root *Node, data int) *Node {
 	return root
 }
 
+func GetNodesAtHeight(height int) int {
+	return int(math.Pow(2, float64(height)) - 1)
+}
+
 func Inorder(root *Node) *Node {
 	if root == nil {
 		return root
@@ -75,7 +80,7 @@ func PostOrder(root *Node) *Node {
 	return nil
 }
 
-func LevelOrder(root *Node) {
+func (root *Node) LevelOrder() {
 	q := queue.Queue{}
 	q.Push(root)
 	fmt.Println("")
