@@ -10,5 +10,5 @@ func main() {
 	for _, e := range arr {
 		root = binarytree.Insert(root, e)
 	}
-	binarytree.DeSerializeTree("1,2,13,#,#,4,5,#,#,#,#").LevelOrder()
+	binarytree.FlattenBinaryTree(root, []*binarytree.Node{nil})
 }

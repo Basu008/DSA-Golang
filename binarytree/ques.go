@@ -563,3 +563,14 @@ func DeSerializeTree(tree string) *Node {
 	}
 	return root
 }
+
+func FlattenBinaryTree(root *Node, prev []*Node) {
+	if root == nil {
+		return
+	}
+	FlattenBinaryTree(root.Right, prev)
+	FlattenBinaryTree(root.Left, prev)
+	root.Right = prev[0]
+	root.Left = nil
+	prev[0] = root
+}
