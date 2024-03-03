@@ -1,0 +1,15 @@
+- Basic types of graphs
+    - Undirected graph : ()-()-()
+    - Directed graph : ()->()->()<-()
+- It consists of : Nodes/vertex,edge 
+- Cycle : If we can travel from one point of a graph and can come back to it. Type: Directed/Undirected cyclic/acyclic graph
+- Path : all the node covered while travelling form 1 to n. Only possible if the nodes are connected
+- Degrees
+    - For UG : No of edges that are connected to a node. Total degree = 2 * no.of edges (as every edge connects two node)
+    - For DG : The no.of edges coming to the ()<- is called indegree and ()-> is called outdegree.
+- Connected Components : Different graphs that might not be connected but act as a single graph.
+
+Dijsktra (UG): Don't work for -ve weights and cycles
+Bellman Ford (DG): Detect negative cycles
+Flloyd Warshal (DG): Works for shortest node form path a to path b
+Prims Algo : 
