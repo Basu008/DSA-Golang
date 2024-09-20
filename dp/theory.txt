@@ -1,0 +1,7 @@
+memoization : In this you use already calculated data in a recusrsion saving recusrsion calls
+tabualation : To store data and then try to convert the recusrsion into loops
+
+Steps to solve a DP ques:
+ - convert the problem to index based
+ - Do all possible operations you can do on the
+ - Decide a base case
